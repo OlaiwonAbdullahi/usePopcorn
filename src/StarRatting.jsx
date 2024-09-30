@@ -12,7 +12,7 @@ const textStyle = {
   lineHeight: "0",
   margin: "0",
 };
-const StarRatting = ({ maxRating }) => {
+const StarRatting = ({ maxRating = 2 }) => {
   return (
     <div style={containerStyle}>
       <div style={starContainerStyle}>
