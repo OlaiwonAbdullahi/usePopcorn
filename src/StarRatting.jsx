@@ -9,17 +9,20 @@ const containerStyle = {
 const starContainerStyle = {
   display: "flex",
 };
-const textStyle = {
-  lineHeight: "0",
-  margin: "0",
-};
-const StarRatting = ({ maxRating = 5 }) => {
+
+const StarRatting = ({ maxRating = 5, color = "#fcc419", size = 48 }) => {
   const [rating, setRating] = useState(1);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRating(rating) {
     setRating(rating);
   }
+  const textStyle = {
+    lineHeight: "0",
+    margin: "0",
+    color,
+    fontSize: `${size * 0.5}px`,
+  };
   return (
     <div style={containerStyle}>
       <div style={starContainerStyle}>
@@ -30,6 +33,8 @@ const StarRatting = ({ maxRating = 5 }) => {
             onRate={() => handleRating(i + 1)}
             onHoverIn={() => setTempRating(i + 1)}
             onHoverOut={() => setTempRating(0)}
+            color={color}
+            size={size}
           />
         ))}
       </div>
@@ -40,14 +45,13 @@ const StarRatting = ({ maxRating = 5 }) => {
 
 export default StarRatting;
 
-const starStyle = {
-  width: "48px ",
-  height: "48px ",
-  display: "block",
-  cursor: "pointer",
-};
-
-function Star({ onRate, full, onHoverIn, onHoverOut }) {
+function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
+  const starStyle = {
+    width: "48px ",
+    height: "48px ",
+    display: "block",
+    cursor: "pointer",
+  };
   return (
     <span
       style={starStyle}
