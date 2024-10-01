@@ -12,6 +12,6 @@ createRoot(document.getElementById("root")).render(
       maxRating={5}
       messages={["Terrible", "Bad", "Okay", "Good", "Amaizing"]}
     />
-    <StarRatting size={24} color="green" />
+    <StarRatting size={24} color="green" defaultRating={3} />
   </StrictMode>
 );
