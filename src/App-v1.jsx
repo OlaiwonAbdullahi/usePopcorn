@@ -69,7 +69,7 @@ export default function App() {
         if (data.Response === "false") throw new Error("Movie not Found");
 
         setMovies(data.Search);
-        console.log(data.Search);
+        console.log(data);
         //setIsLoading(false);
       } catch (err) {
         console.error(err.message);
