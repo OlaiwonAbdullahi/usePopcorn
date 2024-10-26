@@ -55,6 +55,8 @@ export default function App() {
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedId, setSelectedId] = useState("tt0076759");
+
   const tempquery = "Interstellar";
 
   useEffect(
@@ -104,9 +106,15 @@ export default function App() {
         </Box>
         <Box>
           <>
-            <Summary watched={watched} />
+            {selectedId ? (
+              <MovieDetail selectedId={selectedId} />
+            ) : (
+              <>
+                <Summary watched={watched} />
 
-            <WatchedList watched={watched} />
+                <WatchedList watched={watched} />
+              </>
+            )}
           </>
         </Box>
       </Main>
@@ -226,6 +234,9 @@ function Movie({ movie }) {
   );
 }
 
+function MovieDetail({ selectedId }) {
+  return <div className="details">{selectedId}</div>;
+}
 function Summary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
