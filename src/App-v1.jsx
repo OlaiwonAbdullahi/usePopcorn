@@ -59,8 +59,12 @@ export default function App() {
 
   const tempquery = "Interstellar";
 
-  function handleSelectMovie() {
-    setSelectedId(id);
+  function handleSelectMovie(id) {
+    setSelectedId((selectedId) => (id === selectedId ? null : id));
+  }
+
+  function handleCloseMovie() {
+    setSelectedId(null);
   }
 
   useEffect(
@@ -113,7 +117,10 @@ export default function App() {
         <Box>
           <>
             {selectedId ? (
-              <MovieDetail selectedId={selectedId} />
+              <MovieDetail
+                selectedId={selectedId}
+                handleCloseMovie={handleCloseMovie}
+              />
             ) : (
               <>
                 <Summary watched={watched} />
@@ -217,7 +224,7 @@ function WatchBox() {
 
 function MovieList({ movies, handleSelectMovie }) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
         <Movie
           movie={movie}
@@ -231,7 +238,7 @@ function MovieList({ movies, handleSelectMovie }) {
 
 function Movie({ movie, handleSelectMovie }) {
   return (
-    <li key={movie.imdbID} onClick={handleSelectMovie}>
+    <li key={movie.imdbID} onClick={() => handleSelectMovie(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -244,8 +251,16 @@ function Movie({ movie, handleSelectMovie }) {
   );
 }
 
-function MovieDetail({ selectedId }) {
-  return <div className="details">{selectedId}</div>;
+function MovieDetail({ selectedId, handleCloseMovie }) {
+  return (
+    <div className="details">
+      <button className="btn-back" onClick={handleCloseMovie}>
+        {" "}
+        &larr;
+      </button>
+      {selectedId}
+    </div>
+  );
 }
 function Summary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
