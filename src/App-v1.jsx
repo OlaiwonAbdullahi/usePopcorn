@@ -50,7 +50,7 @@ const tempWatchedData = [
 const KEY = "10fb6f6d";
 
 export default function App() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("star wars");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
