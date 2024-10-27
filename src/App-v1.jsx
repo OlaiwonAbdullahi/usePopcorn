@@ -53,7 +53,7 @@ const KEY = "10fb6f6d";
 export default function App() {
   const [query, setQuery] = useState("star wars");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
