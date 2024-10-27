@@ -290,12 +290,12 @@ function MovieDetail({ selectedId, handleCloseMovie }) {
 
   function handleAdd() {
     const newWatchedMovie = {
-      imdbRating: selectedId,
+      imdbID: selectedId,
       title,
       year,
       poster,
-      imdbRating:Number(imdbRating),
-      runtime:
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split("").at(0)),
     };
   }
   return (
