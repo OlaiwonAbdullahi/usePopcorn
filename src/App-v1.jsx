@@ -51,9 +51,9 @@ const tempWatchedData = [
 const KEY = "10fb6f6d";
 
 export default function App() {
-  const [query, setQuery] = useState("star wars");
+  const [query, setQuery] = useState("inception");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
@@ -256,7 +256,7 @@ function Movie({ movie, handleSelectMovie }) {
   );
 }
 
-function MovieDetail({ selectedId, handleCloseMovie }) {
+function MovieDetail({ selectedId, handleCloseMovie, handleAddWatch }) {
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(false);
   const {
@@ -297,7 +297,10 @@ function MovieDetail({ selectedId, handleCloseMovie }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split("").at(0)),
     };
+
+    handleAddWatch(newWatchedMovie);
   }
+
   return (
     <div className="details">
       {loading ? (
@@ -324,7 +327,9 @@ function MovieDetail({ selectedId, handleCloseMovie }) {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={24} />
-              <button className="btn-add" onClick={handleAddWatch}></button>
+              <button className="btn-add" onClick={handleAdd}>
+                Add to WatchList
+              </button>
             </div>
             <p>
               <em>{plot}</em>
